@@ -1,0 +1,11 @@
+dconf/
+dolphinrc
+google-chrome/*
+kde.org/*
+kiorc
+mimeapps.list
+pavucontrol.ini
+pulse/*
+qt6ct/*
+session/*
+systemd/*
