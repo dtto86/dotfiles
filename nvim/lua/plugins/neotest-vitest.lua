@@ -1,12 +1,19 @@
 return {
   { "nvim-neotest/neotest-plenary" },
+  -- {
+  --   "folke/trouble.nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
+  -- },
   {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-neotest/nvim-nio",
       -- 'nvim-neotest/neotest-jest',
       "marilari88/neotest-vitest",
-      "V13Axel/neotest-pest",
+      -- "V13Axel/neotest-pest",
+      -- "nvim-neotest/neotest-overseer",
+      "stevearc/overseer.nvim",
+      "folke/trouble.nvim",
     },
     opts = {
       adapters = {
