@@ -9,3 +9,4 @@ pulse/*
 qt6ct/*
 session/*
 systemd/*
+nvim/lazy-lock.json
