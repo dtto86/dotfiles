@@ -8,3 +8,5 @@ local global = vim.g
 opt.wrap = true
 
 global.autoformat = false
+
+global.lazyvim_eslint_auto_format = false
