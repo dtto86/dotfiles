@@ -9,4 +9,4 @@ opt.wrap = true
 
 global.autoformat = false
 
-global.lazyvim_eslint_auto_format = false
+global.lazyvim_eslint_auto_format = true
