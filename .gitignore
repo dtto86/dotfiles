@@ -9,7 +9,7 @@ pulse/*
 qt6ct/*
 session/*
 systemd/*
-nvim/lazy-lock.json
+lazy-lock.json
 fish/*
 Code/*
 Code - Insiders/*
