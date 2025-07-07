@@ -22,13 +22,13 @@ return {
 
       while current.filename ~= current:parent().filename do
         if current:joinpath("node_modules"):exists() then
-          print("Using cwd:", current:absolute())
+          -- print("Using cwd:", current:absolute())
           return current:absolute()
         end
         current = current:parent()
       end
 
-      print("Falling back to cwd:", vim.fn.getcwd())
+      -- print("Falling back to cwd:", vim.fn.getcwd())
       return vim.fn.getcwd() -- fallback to current working directory
     end
 
