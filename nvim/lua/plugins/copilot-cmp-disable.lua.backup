@@ -1,0 +1,5 @@
+-- ~/.config/nvim/lua/plugins/disable-copilot-cmp.lua
+return {
+  { "zbirenbaum/copilot-cmp", enabled = false },
+}
+

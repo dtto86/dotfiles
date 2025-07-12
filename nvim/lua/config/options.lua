@@ -4,6 +4,7 @@
 
 local opt = vim.opt
 local global = vim.g
+local api = vim.api
 
 opt.wrap = true
 
@@ -12,3 +13,5 @@ global.autoformat = false
 global.lazyvim_eslint_auto_format = true
 
 opt.eol = false -- Don't fix end of line on save
+
+api.nvim_set_hl(0, "CopilotSuggestion", { link = "Comment", default = true })
