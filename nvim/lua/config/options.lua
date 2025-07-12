@@ -10,3 +10,5 @@ opt.wrap = true
 global.autoformat = false
 
 global.lazyvim_eslint_auto_format = true
+
+opt.eol = false -- Don't fix end of line on save

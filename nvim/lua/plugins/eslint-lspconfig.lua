@@ -18,7 +18,7 @@ return {
             local current = Path:new(dir)
 
             while current.filename ~= current:parent().filename do
-              if current:joinpath("node_modules"):is_dir() then
+              if current:joinpath("node_modules/eslint"):is_dir() then
                 print("Found node_modules in: " .. current:absolute())
                 return current:absolute()
               end
@@ -43,7 +43,13 @@ return {
           client.server_capabilities.documentFormattingProvider = false
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
-            command = "EslintFixAll",
+            callback = function()
+              vim.cmd("EslintFixAll")
+              local last_line = vim.api.nvim_buf_get_lines(bufnr, -2, -1, false)[1]
+              if last_line ~= "" then
+                vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, {""})
+              end
+            end,
           })
         end,
       },

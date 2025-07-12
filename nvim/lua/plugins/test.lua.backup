@@ -73,29 +73,35 @@ return {
           require 'neotest-vitest',
           -- require 'neotest-pest',
         }
-        for name, config in pairs(opts.adapters or {}) do
-          if type(name) == 'number' then
-            if type(config) == 'string' then
-              config = require(config)
-            end
-            adapters[#adapters + 1] = config
-          elseif config ~= false then
-            local adapter = require(name)
-            if type(config) == 'table' and not vim.tbl_isempty(config) then
-              local meta = getmetatable(adapter)
-              if adapter.setup then
-                adapter.setup(config)
-              elseif adapter.adapter then
-                adapter.adapter(config)
-                adapter = adapter.adapter
-              elseif meta and meta.__call then
-                adapter = adapter(config)
-              else
-                error('Adapter ' .. name .. ' does not support setup')
-              end
-            end
-            adapters[#adapters + 1] = adapter
+        -- for name, config in pairs(opts.adapters or {}) do
+        --   if type(name) == 'number' then
+        --     if type(config) == 'string' then
+        --       config = require(config)
+        --     end
+        --     adapters[#adapters + 1] = config
+        --   elseif config ~= false then
+        --     local adapter = require(name)
+        --     if type(config) == 'table' and not vim.tbl_isempty(config) then
+        --       local meta = getmetatable(adapter)
+        --       if adapter.setup then
+        --         adapter.setup(config)
+        --       elseif adapter.adapter then
+        --         adapter.adapter(config)
+        --         adapter = adapter.adapter
+        --       elseif meta and meta.__call then
+        --         adapter = adapter(config)
+        --       else
+        --         error('Adapter ' .. name .. ' does not support setup')
+        --       end
+        --     end
+        --     adapters[#adapters + 1] = adapter
+        --   end
+        -- end
+        for _, config in ipairs(opts.adapters or {}) do
+          if type(config) == 'string' then
+            config = require(config)
           end
+          adapters[#adapters + 1] = config
         end
         opts.adapters = adapters
       end
@@ -115,12 +121,12 @@ return {
       { "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "Toggle Watch (Neotest)" },
     },
   },
-  {
-    'mfussenegger/nvim-dap',
-    optional = true,
-    -- stylua: ignore
-    keys = {
-      { "<leader>td", function() require("neotest").run.run({strategy = "dap", suite = false}) end, desc = "Debug Nearest (Neotest)" },
-    },
-  },
+  -- {
+  --   'mfussenegger/nvim-dap',
+  --   optional = true,
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>td", function() require("neotest").run.run({strategy = "dap", suite = false}) end, desc = "Debug Nearest (Neotest)" },
+  --   },
+  -- },
 }
