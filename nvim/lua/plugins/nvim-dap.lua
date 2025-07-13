@@ -50,7 +50,7 @@ return {
     vscode.type_to_filetypes["pwa-node"] = js_filetypes
 
     for _, language in ipairs(js_filetypes) do
-      if not dap.configurations[language] then
+      -- if not dap.configurations[language] then
         dap.configurations[language] = {
           {
             type = "pwa-node",
@@ -107,7 +107,7 @@ return {
             skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
           },
         }
-      end
+      -- end
     end
   end,
 }
