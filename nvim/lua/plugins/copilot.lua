@@ -10,7 +10,7 @@ return {
       hide_during_completion = false, -- optional: hide ghost text when completion is active
       debounce = 75,
       keymap = {
-      accept = "<M-CR>", -- use <M-CR> to accept the suggestion
+      accept = "<M-i>", -- use <M-CR> to accept the suggestion
       --   accept_word = false,
       --   accept_line = false,
       --   next = "<C-n>",

@@ -4,7 +4,16 @@ return {
   opts = function(_, opts)
     local function eol()
       local fmt = vim.bo.fileformat
-      return fmt:upper()
+      if fmt == "unix" then
+        return "LF"
+      elseif fmt == "dos" then
+        return "CRLF"
+      elseif fmt == "mac" then
+        return "CR"
+      else
+        return fmt
+      end
+      -- return fmt:upper()
     end
 
     -- Insert `eol` into an existing section like lualine_x
