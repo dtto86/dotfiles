@@ -10,12 +10,13 @@ return {
       hide_during_completion = false, -- optional: hide ghost text when completion is active
       debounce = 75,
       keymap = {
-      accept = "<M-i>", -- use <M-CR> to accept the suggestion
-      --   accept_word = false,
-      --   accept_line = false,
-      --   next = "<C-n>",
-      --   prev = "<C-p>",
-      --   dismiss = "<C-e>",
+        accept = false,
+      -- accept = "<M-i>", -- use <M-CR> to accept the suggestion
+      -- accept_word = false,
+      -- accept_line = false,
+      -- next = "<C-n>",
+      -- prev = "<C-p>",
+      -- dismiss = "<C-e>",
       },
     },
     panel = { enabled = false }, -- <- disables menu popup
