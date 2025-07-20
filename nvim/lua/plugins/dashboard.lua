@@ -65,6 +65,9 @@ d::::::ddddd::::::dd     t::::::tttt:::::t  t::::::tttt:::::to:::::ooooo:::::o8:
           return {}
         end,
       },
+      sections = {
+        { section = "header" },
+      }
     },
   },
 }

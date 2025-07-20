@@ -11,7 +11,7 @@ return {
       debounce = 75,
       keymap = {
         accept = false,
-      -- accept = "<M-i>", -- use <M-CR> to accept the suggestion
+      -- accept = "<CR>", -- use <CR> to accept the suggestion
       -- accept_word = false,
       -- accept_line = false,
       -- next = "<C-n>",

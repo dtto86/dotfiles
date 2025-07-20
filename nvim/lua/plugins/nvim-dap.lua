@@ -52,13 +52,13 @@ return {
     for _, language in ipairs(js_filetypes) do
       -- if not dap.configurations[language] then
         dap.configurations[language] = {
-          {
-            type = "pwa-node",
-            request = "launch",
-            name = "Launch file",
-            program = "${file}",
-            cwd = "${workspaceFolder}",
-          },
+          -- {
+          --   type = "pwa-node",
+          --   request = "launch",
+          --   name = "Launch file",
+          --   program = "${file}",
+          --   cwd = "${workspaceFolder}",
+          -- },
           {
             type = "pwa-node",
             request = "attach",
@@ -98,14 +98,14 @@ return {
               "!**/node_modules/**",
             },
           },
-          {
-            type = 'pwa-node',
-            request = 'attach',
-            name = 'Attach',
-            processId = require('dap.utils').pick_process,
-            cwd = '${workspaceFolder}/src',
-            skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
-          },
+          -- {
+          --   type = 'pwa-node',
+          --   request = 'attach',
+          --   name = 'Attach',
+          --   processId = require('dap.utils').pick_process,
+          --   cwd = '${workspaceFolder}/src',
+          --   skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+          -- },
         }
       -- end
     end
