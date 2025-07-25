@@ -14,7 +14,7 @@ return {
       javascriptreact = { "eslint" },
       typescript = { "eslint" },
       typescriptreact = { "eslint" },
-      vue = { "eslint" },
+      vue = { "prettier" },
       json = { "prettier" },
       css = { "prettier" },
       html = { "prettier" },

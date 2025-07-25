@@ -20,7 +20,8 @@ return {
             while current.filename ~= current:parent().filename do
               if current:joinpath("node_modules/eslint"):is_dir() then
                 print("Found node_modules in: " .. current:absolute())
-                return current:absolute()
+                -- return current:absolute()
+                return current.joinpath("node_modules"):absolute()
               end
               current = current:parent()
             end
@@ -29,6 +30,7 @@ return {
             -- return vim.fn.getcwd() -- fallback to CWD
             -- return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules/eslint/"
             return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules"
+            -- return "/home/pravin/.nvm/versions/node/v22.17.0/lib/node_modules"
             -- return "/home/pravin/.nvm/versions/node/v20.18.0/bin"
           end)(),
           workingDirectories = { mode = "auto" },
