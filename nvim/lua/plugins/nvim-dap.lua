@@ -88,8 +88,8 @@ return {
             name = "Launch ui npm script",
             runtimeExecutable = "npm",
             runtimeArgs = { "run", "start:all" }, -- or whatever script
-            rootPath = "${workspaceFolder}",
-            cwd = "${workspaceFolder}",
+            rootPath = "${workspaceFolder}/modules/risks/ui",
+            cwd = "${workspaceFolder}/modules/risks/ui",
             console = "integratedTerminal",
             internalConsoleOptions = "neverOpen",
             skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
