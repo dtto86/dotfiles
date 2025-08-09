@@ -27,7 +27,7 @@ while true; do
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
             if [[ "$img" != "$1" ]]; then
-			    swww img "$img"
+			    swww img "$img" -t fade
 			    sleep $INTERVAL
             fi 
 		done
