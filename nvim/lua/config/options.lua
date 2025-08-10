@@ -15,3 +15,6 @@ global.lazyvim_eslint_auto_format = true
 opt.eol = false -- Don't fix end of line on save
 
 api.nvim_set_hl(0, "CopilotSuggestion", { link = "Comment", default = true })
+
+opt.spell = true
+opt.spelllang = { "en_us" }
