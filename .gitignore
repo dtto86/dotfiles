@@ -42,3 +42,4 @@ vlc/
 xfce4/
 xsettingsd/
 tmux/plugins/*
+weather.sh

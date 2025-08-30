@@ -43,7 +43,19 @@ return {
       end
     end
 
-    local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+    local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
+
+    local function find_workspace_folder()
+        local file = vim.api.nvim_buf_get_name(0)
+        local cwd = vim.fn.fnamemodify(file, ":p:h")
+        while cwd ~= "/" do
+          if vim.fn.isdirectory(cwd .. "/node_modules") == 1 then
+            return cwd
+            end
+          cwd = vim.fn.fnamemodify(cwd, ":h")
+        end
+        return vim.fn.getcwd()
+    end
 
     local vscode = require("dap.ext.vscode")
     vscode.type_to_filetypes["node"] = js_filetypes
@@ -72,13 +84,17 @@ return {
             name = "Launch api npm script",
             runtimeExecutable = "npm",
             runtimeArgs = { "run", "start-api" }, -- or whatever script
-            rootPath = "${workspaceFolder}",
-            cwd = "${workspaceFolder}",
+            environment = { NODE_OPTIONS = "--inspect" },
+            -- rootPath = "${workspaceFolder}",
+            -- cwd = "${workspaceFolder}",
+            rootPath = find_workspace_folder,
+            cwd = find_workspace_folder,
+            protocol = "inspector",
             console = "integratedTerminal",
             internalConsoleOptions = "neverOpen",
-            skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+            skipFiles = { find_workspace_folder() .. "/node_modules/**/*.js" },
             resolveSourceMapLocations = {
-              "${workspaceFolder}/**",
+              find_workspace_folder() .. "/**",
               "!**/node_modules/**",
             },
           },
@@ -87,14 +103,22 @@ return {
             request = "launch",
             name = "Launch ui npm script",
             runtimeExecutable = "npm",
-            runtimeArgs = { "run", "start:all" }, -- or whatever script
-            rootPath = "${workspaceFolder}/modules/risks/ui",
-            cwd = "${workspaceFolder}/modules/risks/ui",
+            runtimeArgs = { "run", "start" }, -- or whatever script
+            environment = { NODE_OPTIONS = "--inspect" },
+            -- rootPath = "${workspaceFolder}/modules/risks/ui",
+            -- cwd = "${workspaceFolder}/modules/risks/ui",
+            rootPath = find_workspace_folder,
+            cwd = find_workspace_folder,
+            protocol = "inspector",
             console = "integratedTerminal",
             internalConsoleOptions = "neverOpen",
             skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+            -- resolveSourceMapLocations = {
+            --   "${workspaceFolder}/**",
+            --   "!**/node_modules/**",
+            -- },
             resolveSourceMapLocations = {
-              "${workspaceFolder}/**",
+              find_workspace_folder() .. "/**",
               "!**/node_modules/**",
             },
           },
