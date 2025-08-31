@@ -84,7 +84,7 @@ return {
             name = "Launch api npm script",
             runtimeExecutable = "npm",
             runtimeArgs = { "run", "start-api" }, -- or whatever script
-            environment = { NODE_OPTIONS = "--inspect" },
+            env = { NODE_OPTIONS = "--inspect" },
             -- rootPath = "${workspaceFolder}",
             -- cwd = "${workspaceFolder}",
             rootPath = find_workspace_folder,
@@ -104,7 +104,7 @@ return {
             name = "Launch ui npm script",
             runtimeExecutable = "npm",
             runtimeArgs = { "run", "start" }, -- or whatever script
-            environment = { NODE_OPTIONS = "--inspect" },
+            env = { NODE_OPTIONS = "--inspect" },
             -- rootPath = "${workspaceFolder}/modules/risks/ui",
             -- cwd = "${workspaceFolder}/modules/risks/ui",
             rootPath = find_workspace_folder,
