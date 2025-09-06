@@ -1,19 +1,17 @@
+-- ~/.config/nvim/lua/plugins/git-scrollbar.lua
 return {
   {
     "lewis6991/gitsigns.nvim",
-    -- opts = {
-    --   signs = {
-    --     add          = { text = "▎" },
-    --     change       = { text = "▎" },
-    --     delete       = { text = "▎" },
-    --     topdelete    = { text = "▎" },
-    --     changedelete = { text = "▎" },
-    --   },
-    --   signcolumn = true, -- enable signs in sign column
-    --   numhl      = false,
-    --   linehl     = false,
-    --   word_diff  = false,
-    -- },
+    opts = {
+      signs = {
+        add          = { text = "▎" },
+        change       = { text = "▎" },
+        delete       = { text = "" }, -- dash-like symbol
+        topdelete    = { text = "" },
+        changedelete = { text = "▎" },
+      },
+      signcolumn = true,
+    },
   },
   {
     "petertriho/nvim-scrollbar",
@@ -26,15 +24,16 @@ return {
       }
 
       require("scrollbar").setup({
-        handle = { color = "#4e4e4e" }, -- scrollbar thumb
+        show = true, -- hide scrollbar handle
+        handle = { text = "" },
         marks = {
-          GitAdd = { text = "│", color = colors.add },
+          GitAdd    = { text = "│", color = colors.add },
           GitChange = { text = "│", color = colors.change },
-          GitDelete = { text = "│", color = colors.delete },
+          GitDelete = { text = "", color = colors.delete }, -- dash
         },
       })
 
-      -- enable gitsigns integration
+      -- enable git change markers
       require("scrollbar.handlers.gitsigns").setup()
     end,
   },
