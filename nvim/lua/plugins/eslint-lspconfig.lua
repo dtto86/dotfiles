@@ -30,8 +30,8 @@ return {
             -- return vim.fn.getcwd() -- fallback to CWD
             -- return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules/eslint/"
             -- return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules"
-            return "/home/pravin/.nvm/versions/node/v22.17.0/lib/node_modules"
-            -- return "/home/pravin/.nvm/versions/node/v20.18.0/bin"
+            -- return "/home/pravin/.nvm/versions/node/v22.17.0/lib/node_modules"
+            return "/home/pravin/.nvm/versions/node/v20.18.0/bin"
           end)(),
           workingDirectories = { mode = "auto" },
           -- },
