@@ -1,0 +1,31 @@
+return {
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "nvim-lua/plenary.nvim", -- for Path module
+  },
+  opts = {
+    servers = {
+      eslint = {
+        root_dir = function(fname)
+          local util = require("lspconfig.util")
+          return util.root_pattern("eslint.config.mjs", ".eslintrc.js", "package.json")(fname)
+        end,
+        settings = {
+          workingdirectories = { mode = "auto" },
+          format = { enable = false },
+        },
+        on_attach = function(client, bufnr)
+          print("on_attach eslint")
+          client.server_capabilities.documentFormattingProvider = false
+          vim.api.nvim_create_autocmd("bufwritepre", {
+            buffer = bufnr,
+            callback = function()
+              -- vim.cmd("eslintfixall")
+              print("callback invoked")
+            end,
+          })
+        end,
+      }
+    },
+  },
+}
