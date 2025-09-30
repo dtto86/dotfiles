@@ -5,6 +5,21 @@ end
 
 local auto_format = vim.g.lazyvim_eslint_auto_format == nil or vim.g.lazyvim_eslint_auto_format
 
+local eslint_config_files = {
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+  '.eslintrc.json',
+  'eslint.config.js',
+  'eslint.config.mjs',
+  'eslint.config.cjs',
+  'eslint.config.ts',
+  'eslint.config.mts',
+  'eslint.config.cts',
+}
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -46,6 +61,34 @@ return {
               -- return "/home/pravin/.nvm/versions/node/v20.18.0/bin"
             end)(),
           },
+          -- root_dir = function(fname)
+          --   local util = require("lspconfig.util")
+          --   return util.root_pattern("eslint.config.mjs", ".eslintrc.js")(fname) or nil
+          -- end,
+          root_dir = function(bufnr, on_dir)
+            local util = require("lspconfig.util")
+            -- Add monorepo and ESLint config markers
+            local root_markers = { 'eslint.config.mjs', 'rush.json' }
+            root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers, { '.git' } }
+            or vim.list_extend(root_markers, { '.git' })
+            local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+            print("project_root: " .. project_root)
+            local filename = vim.api.nvim_buf_get_name(bufnr)
+            local eslint_config_files_with_package_json =
+            util.insert_package_json(eslint_config_files, 'eslintConfig', filename)
+            local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
+              path = filename,
+              type = 'file',
+              limit = 1,
+              upward = true,
+              stop = vim.fs.dirname(project_root),
+            })[1]
+            print("is_buffer_using_eslint: " .. tostring(is_buffer_using_eslint))
+            if not is_buffer_using_eslint then
+              return
+            end
+            on_dir(project_root)
+          end,
           on_attach = function(client, bufnr)
             print("on_attach called for eslint")
             -- if client.config.on_attach then
