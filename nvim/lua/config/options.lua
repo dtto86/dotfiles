@@ -19,3 +19,5 @@ api.nvim_set_hl(0, "CopilotSuggestion", { link = "Comment", default = true })
 
 opt.spell = true
 opt.spelllang = { "en_us" }
+
+global.ai_cmp = false
