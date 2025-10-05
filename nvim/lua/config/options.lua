@@ -21,3 +21,10 @@ opt.spell = true
 opt.spelllang = { "en_us" }
 
 global.ai_cmp = false
+
+opt.autoindent = true
+opt.smartindent = true
+opt.smarttab = true
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
