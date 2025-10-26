@@ -46,14 +46,14 @@ return {
 
               while current.filename ~= current:parent().filename do
                 if current:joinpath("node_modules/eslint"):is_dir() then
-                  print("Found node_modules in: " .. current:absolute())
+                  -- print("Found node_modules in: " .. current:absolute())
                   -- return current:absolute()
                   return current:joinpath("node_modules"):absolute()
                 end
                 current = current:parent()
               end
 
-              print("No node_modules found, using default path")
+              -- print("No node_modules found, using default path")
               -- return vim.fn.getcwd() -- fallback to CWD
               -- return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules/eslint/"
               -- return "/home/pravin/.nvm/versions/node/v20.18.0/lib/node_modules"
@@ -72,7 +72,7 @@ return {
             root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers, { '.git' } }
             or vim.list_extend(root_markers, { '.git' })
             local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
-            print("project_root: " .. project_root)
+            -- print("project_root: " .. project_root)
             local filename = vim.api.nvim_buf_get_name(bufnr)
             local eslint_config_files_with_package_json =
             util.insert_package_json(eslint_config_files, 'eslintConfig', filename)
@@ -83,14 +83,14 @@ return {
               upward = true,
               stop = vim.fs.dirname(project_root),
             })[1]
-            print("is_buffer_using_eslint: " .. tostring(is_buffer_using_eslint))
+            -- print("is_buffer_using_eslint: " .. tostring(is_buffer_using_eslint))
             if not is_buffer_using_eslint then
               return
             end
             on_dir(project_root)
           end,
           on_attach = function(client, bufnr)
-            print("on_attach called for eslint")
+            -- print("on_attach called for eslint")
             -- if client.config.on_attach then
             --   client.config.on_attach(client, bufnr)
             -- end
